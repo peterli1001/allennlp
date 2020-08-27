@@ -340,11 +340,11 @@ class ModelTestCase(AllenNlpTestCase):
         single_predictions = []
         for i, instance in enumerate(self.instances):
             dataset = Batch([instance])
-            tensors = dataset.as_tensor_dict(dataset.get_padding_lengths())
+            tensors = dataset.as_tensor_dict()
             result = self.model(**tensors)
             single_predictions.append(result)
         full_dataset = Batch(self.instances)
-        batch_tensors = full_dataset.as_tensor_dict(full_dataset.get_padding_lengths())
+        batch_tensors = full_dataset.as_tensor_dict()
         batch_predictions = self.model(**batch_tensors)
         for i, instance_predictions in enumerate(single_predictions):
             for key, single_predicted in instance_predictions.items():

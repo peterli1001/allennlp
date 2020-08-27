@@ -78,8 +78,7 @@ class TestPretrainedTransformerEmbedder(AllenNlpTestCase):
         batch = Batch([instance1, instance2])
         batch.index_instances(vocab)
 
-        padding_lengths = batch.get_padding_lengths()
-        tensor_dict = batch.as_tensor_dict(padding_lengths)
+        tensor_dict = batch.as_tensor_dict()
         tokens = tensor_dict["tokens"]
         max_length = max(len(tokens1), len(tokens2))
 
@@ -145,8 +144,7 @@ class TestPretrainedTransformerEmbedder(AllenNlpTestCase):
         batch = Batch([instance1, instance2])
         batch.index_instances(vocab)
 
-        padding_lengths = batch.get_padding_lengths()
-        tensor_dict = batch.as_tensor_dict(padding_lengths)
+        tensor_dict = batch.as_tensor_dict()
         tokens = tensor_dict["tokens"]
         max_length = max(len(tokens1), len(tokens2))
 

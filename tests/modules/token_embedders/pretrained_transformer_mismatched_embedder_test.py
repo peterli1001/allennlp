@@ -42,8 +42,7 @@ class TestPretrainedTransformerMismatchedEmbedder(AllenNlpTestCase):
         batch = Batch([instance1, instance2])
         batch.index_instances(vocab)
 
-        padding_lengths = batch.get_padding_lengths()
-        tensor_dict = batch.as_tensor_dict(padding_lengths)
+        tensor_dict = batch.as_tensor_dict()
         tokens = tensor_dict["tokens"]
 
         assert tokens["bert"]["offsets"].tolist() == [

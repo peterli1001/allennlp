@@ -36,8 +36,7 @@ class TestDataset(AllenNlpTestCase):
     def test_as_tensor_dict(self):
         dataset = Batch(self.instances)
         dataset.index_instances(self.vocab)
-        padding_lengths = dataset.get_padding_lengths()
-        tensors = dataset.as_tensor_dict(padding_lengths)
+        tensors = dataset.as_tensor_dict()
         text1 = tensors["text1"]["tokens"]["tokens"].detach().cpu().numpy()
         text2 = tensors["text2"]["tokens"]["tokens"].detach().cpu().numpy()
 
