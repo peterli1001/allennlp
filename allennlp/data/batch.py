@@ -5,14 +5,14 @@ through a model.
 
 import logging
 from collections import defaultdict
-from typing import Dict, Iterable, Iterator, List, Union
+from typing import Dict, Iterable, Iterator, List
 
 import numpy
-import torch
 
 from allennlp.common.checks import ConfigurationError
 from allennlp.common.util import ensure_list
 from allennlp.data.instance import Instance
+from allennlp.data.fields.field import DataArray
 from allennlp.data.vocabulary import Vocabulary
 
 logger = logging.getLogger(__name__)
@@ -72,9 +72,7 @@ class Batch(Iterable):
 
     def as_tensor_dict(
         self, padding_lengths: Dict[str, Dict[str, int]] = None, verbose: bool = False
-    ) -> Dict[str, Union[torch.Tensor, Dict[str, torch.Tensor]]]:
-        # This complex return type is actually predefined elsewhere as a DataArray,
-        # but we can't use it because mypy doesn't like it.
+    ) -> Dict[str, DataArray]:
         """
         This method converts this `Batch` into a set of pytorch Tensors that can be passed
         through a model.  In order for the tensors to be valid tensors, all `Instances` in this
